@@ -1,0 +1,77 @@
+
+Microservices mock Scenarios for building out the API
+
+					[Main API] - v1/ManSvc/
+				     ManagerSvc routes the api calls to these services :
+
+					 CreateSvc
+						1. CreateGame(String[] userIds)    												 [returns String(gameid)]
+						2. SaveGameData(String gameid)  												 [returns bool saved]
+						3. SetGameState(String gameId, String state)									 [returns bool set]
+
+					 NotificationSvc
+						1. NotifyUser(String? gameId, String userId, String message )
+
+					 StartSvc
+						1. StartGame(String gameId)
+						2. SubscribeToGame(String[] gameIds)
+
+					 StopSvc
+						1. StopGame(String[] gameIds)
+						2. UnsubscibeFromGame(String[] gameIds)
+
+					 ScoreLeaderBoardSvc
+						1. CheckPositionOnBoard(String userId)
+						2. UpdatePositionOnBoard(String userId, String position)
+						3. ShowTopFriendsScores(int numOfFriendsToShow)
+
+					 MessagingSvc
+						1. SendMessageToUser(String userId, String[] friendIds)
+						2. SaveMessageToDb(String userId, String Message)
+
+					 CleaupSvc
+						1. RemoveDeadSubscriptions(String[] gameIds)
+						2. LogCleanupErrors(Map<String,Object> gameErrorsMap) - game ids as String and error information as Object
+
+					 LoggingSvc
+					    1. LogToDb(Map<String,Object> gameErrorsMap)
+						2. GetLogFromDb(String gameId)
+
+					 AuthSvc
+					    1. AuthUserToGame(String userId)
+						2. AuthCallsBetweenServices(String svcIdTo, String svcIdFrom)
+
+					 StateSvc
+						1. GetGameState(String gameId)
+						2. SetGameState(String gameId)
+
+					 SubscriptionSvc
+						1. SubscribeToGameData(String gameId)
+						2. UnsubscribeFromGameData(String gameId)
+						3. SubscribeToInGameMessaging(String gameId)
+						4. UnsubscribeFromInGameMessaging(String gameId)
+
+					 DestroySvc
+						1. DeleteDbRecords(String[] gameIds)
+						2. CleanUp(String[] gameIds)
+
+					 FriendsSvc
+						1. ShowAllSocialMediaConnections(String userId)
+						2. ShowGameConnections(String userId)
+						3. ShowBestFriends(String userId)
+						4. ShowConnectedFriends(String userId)
+						5. AddFriends(String userId, String[] friendIds)
+						6. DeleteFriends(String userId, String[] friendIds)
+						7. ParkFriends(String userId, String[] friendIds)
+						8. SendConnectRequest(String[] friendIds)
+
+					 ArchiveSvc
+					    1. ArchiveGameData(String gameId, String gameJsonDataString)
+						2. ArchiveMessages(String gameId, String messageJsonDataString)
+
+					 [Other API]
+					 MonitoringSvc - monitors the health of all services
+
+						1. CheckIfEndpointReturnsError(String endpoint)
+						2. LogEndpointFailureData(String errorData)
+						3. SendNotificationToAdmin()
